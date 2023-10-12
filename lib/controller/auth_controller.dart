@@ -84,6 +84,7 @@ class AuthController extends GetxController implements GetxService {
   int get selectedModuleIndex => _selectedModuleIndex;
   int get vendorTypeIndex => _vendorTypeIndex;
   ModulePermissionBody get modulePermission => _modulePermissionBody;
+  RxBool isProfilLoaded = false.obs;
 
   void changeVendorType(int index, {bool isUpdate = true}) {
     _vendorTypeIndex = index;
@@ -146,6 +147,7 @@ class AuthController extends GetxController implements GetxService {
   Future<void> getProfile() async {
     Response response = await authRepo.getProfileInfo();
     if (response.statusCode == 200) {
+      isProfilLoaded.value = true;
       _profileModel = ProfileModel.fromJson(response.body);
       Get.find<SplashController>().setModule(_profileModel.stores[0].module.id,
           _profileModel.stores[0].module.moduleType);
@@ -470,6 +472,7 @@ class AuthController extends GetxController implements GetxService {
   Future<void> registerStore(StoreBody storeBody) async {
     _isLoading = true;
     update();
+    print(storeBody.toJson());
     Response response =
         await authRepo.registerRestaurant(storeBody, _pickedLogo, _pickedCover, _pickedSignature);
     if (response.statusCode == 200) {

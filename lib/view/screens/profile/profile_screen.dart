@@ -36,7 +36,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).cardColor,
       body: GetBuilder<AuthController>(builder: (authController) {
-        return authController.profileModel == null ? Center(child: CircularProgressIndicator()) : ProfileBgWidget(
+        print("this is error ${authController.profileModel.fName}");
+        return authController.isProfilLoaded.value == false ? Center(child: CircularProgressIndicator()) : ProfileBgWidget(
           backButton: true,
           circularImage: Container(
             decoration: BoxDecoration(
@@ -57,23 +58,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
             width: 1170, color: Theme.of(context).cardColor,
             padding: EdgeInsets.all(Dimensions.PADDING_SIZE_SMALL),
             child: Column(children: [
+            Text(
+                '${Get.find<AuthController>().profileModel.fName} ${authController.profileModel?.lName}',
+                style: robotoMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
+              ), 
 
-              _isOwner ? Text(
-                '${authController.profileModel.fName} ${authController.profileModel.lName}',
+             Get.find<AuthController>().getUserType() != 'owner'? Text(
+                '${authController.profileModel.employeeInfo?.fName ??" " } ${authController.profileModel.employeeInfo?.lName?? " " }',
                 style: robotoMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
-              ) : Text(
-                '${authController.profileModel.employeeInfo.fName} ${authController.profileModel.employeeInfo.lName}',
-                style: robotoMedium.copyWith(fontSize: Dimensions.FONT_SIZE_LARGE),
-              ),
+              ):Text(''),
               SizedBox(height: 30),
-
+              
               Row(children: [
                 _isOwner ? ProfileCard(title: 'since_joining'.tr, data: '${authController.profileModel.memberSinceDays} ${'days'.tr}') : SizedBox(),
                 SizedBox(width: Get.find<AuthController>().modulePermission.order && _isOwner ? Dimensions.PADDING_SIZE_SMALL : 0),
                 Get.find<AuthController>().modulePermission.order ? ProfileCard(title: 'total_order'.tr, data: authController.profileModel.orderCount.toString()) : SizedBox(),
               ]),
               SizedBox(height: 30),
-
+                
               SwitchButton(icon: Icons.dark_mode, title: 'dark_mode'.tr, isButtonActive: Get.isDarkMode, onTap: () {
                 Get.find<ThemeController>().toggleTheme();
               }),

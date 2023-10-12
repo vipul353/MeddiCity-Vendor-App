@@ -10,6 +10,7 @@ class StoreBody {
   String lName;
   String phone;
   String email;
+  String isGstAvalable;
   // String password;
   String zoneId;
   String moduleId;
@@ -36,6 +37,7 @@ class StoreBody {
     this.lName,
     this.phone,
     this.email,
+    this.isGstAvalable,
     // this.password,
     this.zoneId,
     this.moduleId,
@@ -55,6 +57,7 @@ class StoreBody {
     storeName = json['store_name'];
     storeAddress = json['store_address'];
     // tax = json['tax'];
+    isGstAvalable = json['is_gst_avalable'];
     minDeliveryTime = json['min_delivery_time'];
     maxDeliveryTime = json['max_delivery_time'];
     lat = json['lat'];
@@ -81,6 +84,7 @@ class StoreBody {
     final Map<String, String> data = new Map<String, String>();
     data['name'] = this.storeName;
     data['address'] = this.storeAddress;
+    data['is_gst_avalable'] = this.isGstAvalable;
     // data['tax'] = this.tax;
     data['minimum_delivery_time'] = this.minDeliveryTime;
     data['maximum_delivery_time'] = this.maxDeliveryTime;

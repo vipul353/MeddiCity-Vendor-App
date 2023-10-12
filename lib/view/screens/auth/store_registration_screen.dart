@@ -704,6 +704,7 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> {
                                 storeName: _name,
                                 storeAddress: _address,
                                 // tax: _vat,
+                                isGstAvalable:  _isShow?'yes':'no',
                                 minDeliveryTime: _minTime,
                                 maxDeliveryTime: _maxTime,
                                 lat: authController.restaurantLocation.latitude
