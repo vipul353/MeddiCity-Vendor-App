@@ -2,6 +2,7 @@ class StoreBody {
   String storeName;
   String storeAddress;
   // String tax;
+  String companyName;
   String minDeliveryTime;
   String maxDeliveryTime;
   String lat;
@@ -38,6 +39,7 @@ class StoreBody {
     this.phone,
     this.email,
     this.isGstAvalable,
+    this.companyName,
     // this.password,
     this.zoneId,
     this.moduleId,
@@ -57,6 +59,7 @@ class StoreBody {
     storeName = json['store_name'];
     storeAddress = json['store_address'];
     // tax = json['tax'];
+    companyName = json['company_name'];
     isGstAvalable = json['is_gst_avalable'];
     minDeliveryTime = json['min_delivery_time'];
     maxDeliveryTime = json['max_delivery_time'];
@@ -86,6 +89,7 @@ class StoreBody {
     data['address'] = this.storeAddress;
     data['is_gst_avalable'] = this.isGstAvalable;
     // data['tax'] = this.tax;
+    data['company_name'] = this.companyName;
     data['minimum_delivery_time'] = this.minDeliveryTime;
     data['maximum_delivery_time'] = this.maxDeliveryTime;
     data['latitude'] = this.lat;

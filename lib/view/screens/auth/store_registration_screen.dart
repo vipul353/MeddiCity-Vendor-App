@@ -33,6 +33,7 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> {
   final TextEditingController _lNameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _companyName = TextEditingController();
   // Extra Details
   // final TextEditingController _passwordController = TextEditingController();
   // final TextEditingController _confirmPasswordController = TextEditingController();
@@ -529,7 +530,15 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> {
                   showTitle: true,
                 ),
                 SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
-
+                     CustomTextField(
+                  hintText: 'Company Name'.tr,
+                  controller: _companyName,
+                  focusNode: _phoneFocus,
+                  nextFocus: _emailFocus,
+                  inputType: TextInputType.text,
+                  showTitle: true,
+                ),
+                SizedBox(height: Dimensions.PADDING_SIZE_LARGE),
                 Center(
                     child: Text(
                   'login_information'.tr,
@@ -642,6 +651,7 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> {
                           String _minTime = _minTimeController.text.trim();
                           String _maxTime = _maxTimeController.text.trim();
                           String _fName = _fNameController.text.trim();
+                          String companyName = _companyName.text.trim();
                           String _lName = _lNameController.text.trim();
                           String _phone = _phoneController.text.trim();
                           String _email = _emailController.text.trim();
@@ -704,6 +714,7 @@ class _StoreRegistrationScreenState extends State<StoreRegistrationScreen> {
                                 storeName: _name,
                                 storeAddress: _address,
                                 // tax: _vat,
+                                companyName: companyName,
                                 isGstAvalable:  _isShow?'yes':'no',
                                 minDeliveryTime: _minTime,
                                 maxDeliveryTime: _maxTime,
